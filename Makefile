@@ -51,13 +51,17 @@ $(FIXTURES)/tables.tsv $(FIXTURES)/process.tsv $(FIXTURES)/scenes:
 
 # --------------------------------------------------------------- generated lua
 
-# lib/tables.lua and lib/ops/manifest.lua are checked in so the script runs on a
-# norns without any of the above toolchain; regenerate them when the reference
-# teletype checkout moves.
+# lib/tables.lua, lib/ops/manifest.lua and lib/ui/font.lua are checked in so the
+# script runs on a norns without any of the above toolchain; regenerate them
+# when the reference teletype checkout moves.
+#
+# gen_font needs only the vendored font.c, not the oracle, so it is listed last
+# and costs nothing.
 generated: $(FIXTURES)/tables.tsv $(FIXTURES)/ops.tsv
-	@$(LUA) lib/tools/gen_tables.lua
-	@$(LUA) lib/tools/gen_manifest.lua
-	@$(LUA) lib/tools/gen_help.lua
+	@$(LUA) lib/ui/tools/gen_tables.lua
+	@$(LUA) lib/ui/tools/gen_manifest.lua
+	@$(LUA) lib/ui/tools/gen_help.lua
+	@$(LUA) lib/ui/tools/gen_font.lua
 
 # --------------------------------------------------------------------- cleanup
 

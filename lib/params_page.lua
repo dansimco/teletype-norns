@@ -114,20 +114,15 @@ function M.add(on_change)
   end)
 
   params:add_separator('tt_sep_ui', 'teletype: display')
-  params:add_group('tt_ui', 'display', 3)
-  -- 68 (Particle) at size 8: 32 columns and 8 rows, assuming the 4px cell in
-  -- ui/draw. 25 (bmp/tom-thumb) at size 6 is the other 4px-wide fit, 10 rows.
-  -- Anything else will need draw.CW adjusting to match.
-  params:add_number('tt_font_face', 'font', 1, 69, 68)
-  params:add_number('tt_font_size', 'size', 4, 16, 8)
+  params:add_group('tt_ui', 'display', 1)
+  -- There is no font choice any more: ui/draw renders Teletype's own 6x8
+  -- bitmap font, which fixes the screen at 32 columns by 8 rows exactly as on
+  -- the module. Case is the one display decision left that is ours.
   params:add_option('tt_font_case', 'case', { 'upper', 'as typed' }, 1)
-  for _, id in ipairs({ 'tt_font_face', 'tt_font_size', 'tt_font_case' }) do
-    params:set_action(id, function()
-      draw.configure(params:get('tt_font_face'), params:get('tt_font_size'),
-        params:get('tt_font_case') == 1)
-      changed()
-    end)
-  end
+  params:set_action('tt_font_case', function(v)
+    draw.configure(v == 1)
+    changed()
+  end)
 
   params:add_separator('tt_sep_i2c', 'teletype: i2c')
   params:add_group('tt_i2c', 'ansible over i2c', 2)

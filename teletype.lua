@@ -247,11 +247,9 @@ function init()
   params:bang()
   params_page.apply_all()
 
-  -- measure the font before anything is drawn. this is the one place
-  -- screen.text_extents is called; it is a synchronous round-trip and has no
-  -- business in a redraw.
-  require('ui.draw').configure(params:get('tt_font_face'),
-    params:get('tt_font_size'), params:get('tt_font_case') == 1)
+  -- nothing to measure: the font is the module's own bitmap, so its metrics
+  -- are known at load. Case is the only display setting left to apply.
+  require('ui.draw').configure(params:get('tt_font_case') == 1)
 
   setup_crow()
   watch_crow()

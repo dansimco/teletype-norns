@@ -127,6 +127,7 @@ M.ops = {
   ["DRUNK"] = { "DRUNK", "DRUNK x", "Changes by -1, 0, or 1 upon each read, saving its state. Setting DRUNK will give it a new value for the next read, and drunkedness will continue on from there with subsequent reads. Setting DRUNK.MIN and DRUNK.MAX controls the lower and upper bounds (inclusive) that DRUNK can reach. DRUNK.WRAP controls whether the value can wrap around when it reaches it's bounds." },
   ["DRUNK.MAX"] = { "DRUNK.MAX", "DRUNK.MAX x", "set the upper bound for DRUNK, default 255" },
   ["DRUNK.MIN"] = { "DRUNK.MIN", "DRUNK.MIN x", "set the lower bound for DRUNK, default 0" },
+  ["DRUNK.SD"] = { "DRUNK.SD", "DRUNK.SD x", "get / set the random number generator seed for the DRUNK op", "DRUNK.SEED" },
   ["DRUNK.SEED"] = { "DRUNK.SEED", "DRUNK.SEED x", "get / set the random number generator seed for the DRUNK op" },
   ["DRUNK.WRAP"] = { "DRUNK.WRAP", "DRUNK.WRAP x", "should DRUNK wrap around when it reaches it's bounds, default 0" },
   ["ELIF"] = { "ELIF x: ...", nil, "if all previous IF / ELIF fail, and x is not zero, execute command" },
